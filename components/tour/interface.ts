@@ -11,6 +11,7 @@ export interface TourProps extends Omit<RCTourProps, 'renderPanel'> {
   current?: number;
   indicatorsRender?: (current: number, total: number) => ReactNode;
   type?: 'default' | 'primary'; //	default type, affects the background color and text color
+  noPrompt: boolean;
 }
 
 export interface TourStepProps extends RCTourStepProps {
@@ -27,6 +28,12 @@ export interface TourStepProps extends RCTourStepProps {
     className?: string;
     style?: React.CSSProperties;
   };
+  noPromptButtonProps?: {
+    children?: ReactNode;
+    onClick?: () => void;
+    className?: string;
+    style?: React.CSSProperties;
+  };
   indicatorsRender?: (current: number, total: number) => ReactNode;
   type?: 'default' | 'primary'; //	default type, affects the background color and text color
 }
@@ -35,4 +42,5 @@ export interface TourLocale {
   Next: string;
   Previous: string;
   Finish: string;
+  NoPrompt: string;
 }

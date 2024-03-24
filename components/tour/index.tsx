@@ -23,6 +23,7 @@ const Tour: React.FC<TourProps> & { _InternalPanelDoNotUseOrYouWillBeFired: type
     indicatorsRender,
     steps,
     closeIcon,
+    noPrompt = false,
     ...restProps
   } = props;
   const { getPrefixCls, direction, tour } = useContext<ConfigConsumerProps>(ConfigContext);
@@ -61,6 +62,7 @@ const Tour: React.FC<TourProps> & { _InternalPanelDoNotUseOrYouWillBeFired: type
 
   const mergedRenderPanel: RcTourProps['renderPanel'] = (stepProps, stepCurrent) => (
     <TourPanel
+      noPrompt={noPrompt}
       type={type}
       stepProps={stepProps}
       current={stepCurrent}
@@ -80,6 +82,7 @@ const Tour: React.FC<TourProps> & { _InternalPanelDoNotUseOrYouWillBeFired: type
         rootClassName={customClassName}
         prefixCls={prefixCls}
         animated
+        noPrompt
         renderPanel={mergedRenderPanel}
         builtinPlacements={builtinPlacements}
         steps={mergedSteps}

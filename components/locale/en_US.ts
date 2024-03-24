@@ -40,6 +40,7 @@ const localeValues: Locale = {
     Next: 'Next',
     Previous: 'Previous',
     Finish: 'Finish',
+    NoPrompt: 'No Prompt',
   },
   Modal: {
     okText: 'OK',

@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Button, ConfigProvider, Flex, Typography } from 'antd';
 import { createStyles } from 'antd-style';
+import TourComponent from './demo';
 import { Link, useLocation } from 'dumi';
 
 import useLocale from '../../../../hooks/useLocale';
@@ -153,6 +154,7 @@ const PreviewBanner: React.FC<React.PropsWithChildren> = (props) => {
         </Flex>
         <div className={styles.child}>{children}</div>
       </div>
+      <TourComponent />
     </GroupMask>
   );
 };

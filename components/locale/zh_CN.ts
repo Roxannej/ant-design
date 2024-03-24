@@ -45,6 +45,7 @@ const localeValues: Locale = {
     Next: '下一步',
     Previous: '上一步',
     Finish: '结束导览',
+    NoPrompt: '不再提醒',
   },
   Popconfirm: {
     cancelText: '取消',

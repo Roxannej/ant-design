@@ -17,15 +17,17 @@ interface TourPanelProps {
   stepProps: Omit<TourStepProps, 'closable'> & {
     closable?: Exclude<TourStepProps['closable'], boolean>;
   };
+  // noPrompt
   current: number;
   type: TourStepProps['type'];
   indicatorsRender?: TourStepProps['indicatorsRender'];
+  noPrompt: boolean;
 }
 
 // Due to the independent design of Panel, it will be too coupled to put in rc-tour,
 // so a set of Panel logic is implemented separately in antd.
 const TourPanel: React.FC<TourPanelProps> = (props) => {
-  const { stepProps, current, type, indicatorsRender } = props;
+  const { stepProps, current, type, indicatorsRender, noPrompt } = props;
   const {
     prefixCls,
     total = 1,
@@ -40,6 +42,7 @@ const TourPanel: React.FC<TourPanelProps> = (props) => {
     prevButtonProps,
     type: stepType,
     closable,
+    noPromptButtonProps,
   } = stepProps;
 
   const mergedType = stepType ?? type;
@@ -63,6 +66,11 @@ const TourPanel: React.FC<TourPanelProps> = (props) => {
   const prevBtnClick = () => {
     onPrev?.();
     prevButtonProps?.onClick?.();
+  };
+
+  const noPromptBtnClick = () => {
+    onClose?.();
+    noPromptButtonProps?.onClick?.();
   };
 
   const nextBtnClick = () => {
@@ -123,6 +131,17 @@ const TourPanel: React.FC<TourPanelProps> = (props) => {
         <div className={`${prefixCls}-footer`}>
           {total > 1 && <div className={`${prefixCls}-indicators`}>{mergeIndicatorNode}</div>}
           <div className={`${prefixCls}-buttons`}>
+            {noPrompt === true && (
+              <Button
+                onClick={noPromptBtnClick}
+                {...secondaryBtnProps}
+                {...noPromptButtonProps}
+                size="small"
+                className={classNames(`${prefixCls}-prev-btn`, noPromptButtonProps?.className)}
+              >
+                {noPromptButtonProps?.children ?? contextLocale?.NoPrompt}{' '}
+              </Button>
+            )}
             {current !== 0 ? (
               <Button
                 {...secondaryBtnProps}
